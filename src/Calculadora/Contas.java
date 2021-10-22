@@ -1,10 +1,13 @@
 package Calculadora;
 
+import java.io.IOException;
+
 public class Contas {
 
-	public void JurosSimples()
+	Log log = new Log();
 
-	{
+	public void JurosSimples() throws IOException {
+
 		try {
 			System.out.println("Digite o Valor Inicial");
 			double valorInicial = Util.DigiteValor();
@@ -23,14 +26,15 @@ public class Contas {
 					"O seu valor inicial foi de: R$ " + valorInicial + "\n" + "A taxa de Juros aplicada foi de: "
 							+ taxaJuros + "%" + "\n" + "O Periódo de Meses utilizado foi de: " + periodoMeses + " Meses"
 							+ "\n" + "O Valor Calculado foi de: R$ " + result + "\n");
-		} catch (
 
-		Exception e) {
-			System.out.println("Ocorreu um erro no cálculo do Juros Simples" + e);
+			log.LogSucesso("Valor calculado com sucesso!", Categoria.Sucesso);
+		} catch (Exception e) 
+		{
+			log.LogErro("Ocorreu algo inesperado!", Categoria.Falha, e);
 		}
 	}
 
-	public void JurosCompostos()
+	public void JurosCompostos ()  throws IOException
 
 	{
 		try {
@@ -48,15 +52,17 @@ public class Contas {
 			System.out.println(
 					"O seu valor inicial foi de: R$ " + valorInicial + "\n" + "A taxa de Juros aplicada foi de: "
 							+ taxaJuros + "%" + "\n" + "O Periódo de Meses utilizado foi de: " + periodoMeses + " Meses"
-							+ "\n" + "O Valor Calculado foi de: R$ " + util.ArredondaValor(result)  + "\n");
-		} catch (
+							+ "\n" + "O Valor Calculado foi de: R$ " + util.ArredondaValor(result) + "\n");
 
-		Exception e) {
-			System.out.println("Ocorreu um erro no cálculo do Juros Compostos" + e);
+			log.LogSucesso("Valor calculado com sucesso!", Categoria.Sucesso);
+
+		} catch (Exception e)
+		{
+			log.LogErro("Ocorreu algo inesperado!", Categoria.Falha, e);
 		}
 	}
 
-	public void SalarioLiquido()
+	public void SalarioLiquido() throws IOException
 
 	{
 		try {
@@ -69,14 +75,16 @@ public class Contas {
 			Util util = new Util();
 			System.out.println("O Valor bruto é de: " + salarioBruto + "O seu Salário Líquido é de: R$ "
 					+ util.ArredondaValor(result) + "\n");
+			log.LogSucesso("Valor calculado com sucesso!", Categoria.Sucesso);
 		} catch (
 
 		Exception e) {
-			System.out.println("Ocorreu um erro no cálculo do Salário Líquido" + e);
+			log.LogErro("Ocorreu algo inesperado!", Categoria.Falha, e);
 		}
 	}
 
-	public void DecimoTerceiro() {
+	public void DecimoTerceiro()  throws IOException
+	{
 		try {
 			System.out.println("Digite o Valor do Salário");
 			double salario = Util.DigiteValor();
@@ -88,29 +96,31 @@ public class Contas {
 
 			Util util = new Util();
 			System.out.println("O Valor a receber é de: R$ " + util.ArredondaValor(result) + "\n");
+			log.LogSucesso("Valor calculado com sucesso!", Categoria.Sucesso);
 		} catch (
 
 		Exception e) {
-			System.out.println("Ocorreu um erro no cálculo do Décimo Terceiro" + e);
+			log.LogErro("Ocorreu algo inesperado!", Categoria.Falha, e);
 		}
 	}
 
-	public void Ferias() {
+	public void Ferias()  throws IOException{
 		try {
 			System.out.println("Digite o Valor do Salário Bruto");
 			double salarioBruto = Util.DigiteValor();
 
 			salarioBruto = salarioBruto * 1.3333333;
-			
+
 			double result = ValorINSS(salarioBruto);
 			result = ValorIRRF(result);
 
 			Util util = new Util();
 			System.out.println("O Valor líquido a receber nas férias é de: R$ " + util.ArredondaValor(result) + "\n");
+			log.LogSucesso("Valor calculado com sucesso!", Categoria.Sucesso);
 		} catch (
 
 		Exception e) {
-			System.out.println("Ocorreu um erro no cálculo das férias" + e);
+			log.LogErro("Ocorreu algo inesperado!", Categoria.Falha, e);
 		}
 	}
 

@@ -1,5 +1,6 @@
 package Calculadora;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
@@ -67,7 +68,7 @@ public class Util {
 		return formatador.format(valor);
 	}
 
-	public void ExecutaOperacao(int operacao) {
+	public void ExecutaOperacao(int operacao) throws IOException {
 		Contas conta = new Contas();
 		switch (operacao) {
 
@@ -97,14 +98,15 @@ public class Util {
 		}
 	}
 
-	public static double DigiteValor() {
+	public static double DigiteValor() throws IOException {
 		try {
 			@SuppressWarnings("resource")
 			Scanner teclado = new Scanner(System.in);
 			double result = teclado.nextDouble();
 			return result;
 		} catch (Exception e) {
-			System.out.println("Por favor digite números válidos");
+			Log log = new Log();
+			log.LogErro("Ocorreu algo inesperado!", Categoria.Falha, e);
 			return DigiteValor();
 		}
 	}

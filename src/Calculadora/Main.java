@@ -1,9 +1,12 @@
 package Calculadora;
 
+import java.io.IOException;
+
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
+		Log log = new Log();
 		try {
 
 			int result;
@@ -23,9 +26,9 @@ public class Main {
 
 			} while (result != 0);
 
-			System.out.println("A aplicação foi finalizada");
+			log.LogAviso("A aplicação foi finalizada", Categoria.Aviso);
 		} catch (Exception e) {
-			System.out.println("Ocorreu um erro na aplicação" + e);
+			log.LogErro("Ocorreu algo inesperado!", Categoria.Falha, e);
 		}
 
 	}
